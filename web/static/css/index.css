@@ -1,0 +1,89 @@
+.content .params-setting {
+    float: left;
+    width: 200px;
+    margin: 0 10px;
+}
+
+.content .params {
+    float: left;
+    vertical-align: top;
+}
+
+.content h1 {
+    border-bottom: #f9826c solid 2px;
+    text-align: left;
+}
+.params-setting h1{
+    border-right: #f9826c solid 2px;
+}
+.display h1 {
+    width: 200px;
+    margin: 0 10px;
+}
+
+/* .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+} */
+
+header {
+    margin: 0 -34px 20px;
+    background-color: #0186c49a;
+    color: #fff;
+    text-align: center;
+
+}
+
+header>h1 {
+    font-size: 42px;
+    margin: 0px auto;
+    display: block;
+}
+
+.wrapper {
+    margin: 20px 95px;
+    background-color: rgb(174 180 189 / 90%);
+    padding: 20px 0;
+    width: 90%;
+}
+
+body {
+    background-color: #4d4a40;
+    background-image: url(../source/images/AI.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+form {
+    text-align: center;
+}
+
+form select {
+    margin: 5px 10px;
+}
+
+div.display {
+
+    text-align: left;
+
+}
+
+label {
+    margin: 0px;
+}
+
+.Box {
+    background-color: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 10px 10px;
+    margin: 10px;
+    width: fit-content;
+}
+button.btn.btn-dark{
+    margin-top: 23px;
+}
+body > div > div > div.clearfix.mb-5 > div.params.clearfix.Box{
+    max-width: 700px;
+}

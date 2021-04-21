@@ -1,0 +1,73 @@
+{
+    "games": [{
+        "name": "Cooprative navigation",
+        "params": {
+            "--env_name": ["simple_spread"],
+            "--display": ["false","true"],
+            "--num_epochs": {
+                "default": 100,
+                "type": "number"
+            },
+            "--max_steps": {
+                "default": 100,
+                "type": "number"
+            },
+            "--save": {
+                "default":"",
+                "type":"text"
+            },
+            "--save_every": {
+                "default": 0,
+                "type": "number"
+            },
+            "--record_video": ["false","true"],
+            "--video_name": {
+                "default":"",
+                "type":"text"
+            },
+            "--nagents": {
+                "default": 3,
+                "type": "number"
+            },
+            "--load":{
+                "default":"",
+                "type":"text"
+            }
+        }
+    }, {
+        "name": "Predator-prey",
+        "params": {
+            "--env_name": ["simple_spread"],
+            "--display": ["false","true"],
+            "--num_epochs": {
+                "default": 100,
+                "type": "number"
+            },
+            "--max_steps": {
+                "default": 100,
+                "type": "number"
+            },
+            "--save": {
+                "default":"",
+                "type":"text"
+            },
+            "--save_every": {
+                "default": 0,
+                "type": "number"
+            },
+            "--record_video": ["false","true"],
+            "--video_name": {
+                "default":"",
+                "type":"text"
+            },
+            "--nagents": {
+                "default": 3,
+                "type": "number"
+            },
+            "--load":{
+                "default":"",
+                "type":"text"
+            }
+        }
+    }]
+}

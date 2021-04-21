@@ -18,16 +18,12 @@ from pprint import pprint
 torch.utils.backcompat.broadcast_warning.enabled = True
 torch.utils.backcompat.keepdim_warning.enabled = True
 
-<<<<<<< Updated upstream
-=======
 
 torch.set_default_tensor_type('torch.DoubleTensor')
 
 
 args = get_args()
->>>>>>> Stashed changes
 
-torch.set_default_tensor_type('torch.DoubleTensor')
 
 
 def run(num_epochs):

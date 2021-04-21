@@ -38,15 +38,7 @@ def init(env_name, args, final_init=True):
         env = make_env(env_name,args)
         env = EnvWrapper(env)
     elif env_name == 'simple_spread':
-<<<<<<< Updated upstream
         env = make_env(env_name,args)
-=======
-        env = make_env(env_name)
-
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         env = EnvWrapper(env)
     else:
         raise RuntimeError("wrong env name")

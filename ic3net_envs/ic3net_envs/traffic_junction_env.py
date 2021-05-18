@@ -274,7 +274,7 @@ class TrafficJunctionEnv(gym.Env):
         self.frame_id+=1
         with open("web/static/source/data/render_cache.json","w+") as f:
             json.dump(frame,f)
-        time.sleep(0.8)
+        time.sleep(0.7)
 
     def render(self, mode='human', close=False):
 

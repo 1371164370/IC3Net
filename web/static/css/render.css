@@ -1,0 +1,50 @@
+:root {
+    --grid-width: 50px;
+    --gird-heigth: 50px;
+}
+div.grid{
+    width: var(--grid-width);
+    height: var(--gird-heigth);
+    background-color: whitesmoke;
+    position: absolute;
+}
+div.grid.road {
+    background-color: black;
+    box-sizing: border-box;
+}
+
+/* div.grid.road.car{
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+div.grid.road.car.gas{
+    background-image: url(../source/data/run.png);
+}
+div.grid.road.car.horizontal{
+    transform: rotate(180deg);
+}
+div.grid.road.car.vertical{
+    transform: rotate(270deg);
+}
+div.grid.road.car.stop{
+    background-image: url(../source/data/stop.png);
+}
+div.grid.road.crash{
+    background-image: url(../source/data/hit.png);
+    background-size: contain;
+} */
+
+div#render-board{
+    position: relative;
+    background-color: cadetblue;
+}
+div.car{
+    position: absolute;
+    transition: all 0.5s linear;
+    background-image: url(../source/data/stop.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+}

@@ -24,8 +24,11 @@ import curses
 import gym
 import numpy as np
 from gym import spaces
-from ic3net_envs.traffic_helper import *
+from ic3net_envs.ic3net_envs.traffic_helper import *
 
+#render filedata
+import json
+import time
 
 def nPr(n,r):
     f = math.factorial
@@ -47,6 +50,9 @@ class TrafficJunctionEnv(gym.Env):
         self.episode_over = False
         self.has_failed = 0
 
+        self.frame_id= 0
+        # self.frame_seq=[]
+
     def init_curses(self):
         self.stdscr = curses.initscr()
         curses.start_color()
@@ -59,7 +65,7 @@ class TrafficJunctionEnv(gym.Env):
 
     def init_args(self, parser):
         env = parser.add_argument_group('Traffic Junction task')
-        env.add_argument('--dim', type=int, default=5,
+        env.add_argument('--dim', type=int, default=10,
                          help="Dimension of box (i.e length of road) ")
         env.add_argument('--vision', type=int, default=1,
                          help="Vision of car")
@@ -118,7 +124,7 @@ class TrafficJunctionEnv(gym.Env):
                 'medium':4,
                 'hard':8}
 
-        dim_sum = dims[0] + dims[1]
+        dim_sum = self.dims[0] + self.dims[1]
         base = {'easy':   dim_sum,
                 'medium': 2 * dim_sum,
                 'hard':   4 * dim_sum}
@@ -165,6 +171,7 @@ class TrafficJunctionEnv(gym.Env):
         -------
         observation (object): the initial observation of the space.
         """
+        # self.clear_renderdata()
         self.episode_over = False
         self.has_failed = 0
 
@@ -251,8 +258,28 @@ class TrafficJunctionEnv(gym.Env):
 
         return obs, reward, self.episode_over, debug
 
+    def clear_renderdata(self):
+        self.frame_id=0
+        # self.frame_seq=[]
+        with open("web/static/source/data/render_cache.json","w") as f:
+            pass
+
+    def save_renderdata(self):
+        routes=[i[0].tolist() for i in self.routes]
+        car_loc=[i.tolist() if (type(i)!=int) else i  for i in self.car_loc]
+        frame={"car_loc":car_loc,
+                "routes":routes,
+                "frame_id":self.frame_id,
+                "grid_size":[self.dims[0],self.dims[1]]}
+        self.frame_id+=1
+        with open("web/static/source/data/render_cache.json","w+") as f:
+            json.dump(frame,f)
+        time.sleep(0.8)
+
     def render(self, mode='human', close=False):
 
+        self.save_renderdata()
+        
         grid = self.grid.copy().astype(object)
         # grid = np.zeros(self.dims[0]*self.dims[1], dtypeobject).reshape(self.dims)
         grid[grid != self.OUTSIDE_CLASS] = '_'
@@ -279,9 +306,9 @@ class TrafficJunctionEnv(gym.Env):
                         self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(2))
                     elif '<>' in item: #GAS
                         self.stdscr.addstr(row_num, idx * 4, item.center(3), curses.color_pair(1))
-                    elif 'b' in item and len(item) > 3: #CRASH
+                    elif '<b?' in item and len(item) > 3: #CRASH
                         self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(2))
-                    elif 'b' in item:
+                    elif '<b>' in item:
                         self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(5))
                     else:
                         self.stdscr.addstr(row_num, idx * 4, item.center(3),  curses.color_pair(2))
@@ -290,7 +317,9 @@ class TrafficJunctionEnv(gym.Env):
 
         self.stdscr.addstr(len(grid), 0, '\n')
         self.stdscr.refresh()
-
+        '''
+        '''
+        
     def exit_render(self):
         curses.endwin()
 

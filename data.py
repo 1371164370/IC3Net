@@ -25,7 +25,9 @@ def init(env_name, args, final_init=True):
         env.multi_agent_init(args)
         env = GymWrapper(env)
     elif env_name == 'traffic_junction':
-        env = gym.make('TrafficJunction-v0')
+        from ic3net_envs.ic3net_envs.traffic_junction_env import TrafficJunctionEnv
+        env = TrafficJunctionEnv()
+        #env = gym.make('TrafficJunction-v0')
         if args.display:
             env.init_curses()
         env.multi_agent_init(args)

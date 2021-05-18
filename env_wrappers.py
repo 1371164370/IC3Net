@@ -86,7 +86,7 @@ class GymWrapper(object):
 
     def display(self):
         self.env.render()
-        time.sleep(0.02)
+        # time.sleep(0.02)
 
     def end_display(self):
         self.env.exit_render()
@@ -174,7 +174,7 @@ class EnvWrapper(object):
             obs = self.env.reset(epoch)
         else:
             obs = self.env.reset()
-
+        #print(obs)
         obs = self._flatten_obs(obs)
         return obs
 
@@ -189,9 +189,11 @@ class EnvWrapper(object):
         self.video_name = ''
         self.video = []
 
-
+    import time
     def display(self):
         self.env.render()
+        time.sleep(0.002)
+        
 
         
 

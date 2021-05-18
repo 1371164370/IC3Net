@@ -21,3 +21,6 @@ python main.py --env_name simple_tag --display
 python main.py --env_name simple_spread --record_video --video_name '自己定义一个视频名字'
 ```
 
+
+服务器运行：
+xvfb-run -a python main.py --env_name simple_spread --display

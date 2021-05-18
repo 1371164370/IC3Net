@@ -1,73 +1,116 @@
 {
-    "games": [{
-        "name": "Cooprative navigation",
-        "params": {
-            "--env_name": ["simple_spread"],
-            "--display": ["false","true"],
-            "--num_epochs": {
-                "default": 100,
-                "type": "number"
-            },
-            "--max_steps": {
-                "default": 100,
-                "type": "number"
-            },
-            "--save": {
-                "default":"",
-                "type":"text"
-            },
-            "--save_every": {
-                "default": 0,
-                "type": "number"
-            },
-            "--record_video": ["false","true"],
-            "--video_name": {
-                "default":"",
-                "type":"text"
-            },
-            "--nagents": {
-                "default": 3,
-                "type": "number"
-            },
-            "--load":{
-                "default":"",
-                "type":"text"
+    "games": [
+        {
+            "name": "Predator prey",
+            "params": {
+                "--env_name": [
+                    "simple_spread"
+                ],
+                "--display": [
+                    "true",
+                    "false"
+                ],
+                "--num_epochs": {
+                    "default": 5,
+                    "type": "number"
+                },
+                "--max_steps": {
+                    "default": 100,
+                    "type": "number"
+                },
+                "--save": {
+                    "default": "",
+                    "type": "text"
+                },
+                "--save_every": {
+                    "default": 0,
+                    "type": "number"
+                },
+                "--record_video": [
+                    "true",
+                    "false"
+                ],
+                "--video_name": {
+                    "default": "",
+                    "type": "text"
+                },
+                "--nagents": {
+                    "default": 3,
+                    "type": "number"
+                },
+                "--load": [
+                    "models/model_2k_3n_commNetMLP/model_2k_3n_commNetMLP",
+                    "models/123/123"
+                ],
+                "--benchmark": [
+                    "true",
+                    "false"
+                ],
+                "--recurrent": [
+                    "false",
+                    "true"
+                ],
+                "--commnet": [
+                    "true",
+                    "false"
+                ],
+                "--plot": [
+                    "false",
+                    "true"
+                ],
+                "--plot_env": {
+                    "default": "",
+                    "type": "text"
+                }
+            }
+        },
+        {
+            "name": "Traffic junction",
+            "params": {
+                "--display": [
+                    "true",
+                    "false"
+                ],
+                "--dim": {
+                    "default": 8,
+                    "type": "number"
+                },
+                "--vision": {
+                    "default": 1,
+                    "type": "number"
+                },
+                "--num_epochs": {
+                    "default": 5,
+                    "type": "number"
+                },
+                "--nagents": {
+                    "default": 5,
+                    "type": "number"
+                },
+                "--env_name": [
+                    "traffic_junction"
+                ],
+                "--add_rate_max": {
+                    "default": 0.2,
+                    "type": "number"
+                },
+                "--add_rate_min": {
+                    "default": 0.05,
+                    "type": "number"
+                },
+                "--difficulty": {
+                    "default": "easy",
+                    "type": "text"
+                },
+                "--curr_start": {
+                    "default": 0,
+                    "type": "number"
+                },
+                "--curr_end": {
+                    "default": 0,
+                    "type": "number"
+                }
             }
         }
-    }, {
-        "name": "Predator-prey",
-        "params": {
-            "--env_name": ["simple_spread"],
-            "--display": ["false","true"],
-            "--num_epochs": {
-                "default": 100,
-                "type": "number"
-            },
-            "--max_steps": {
-                "default": 100,
-                "type": "number"
-            },
-            "--save": {
-                "default":"",
-                "type":"text"
-            },
-            "--save_every": {
-                "default": 0,
-                "type": "number"
-            },
-            "--record_video": ["false","true"],
-            "--video_name": {
-                "default":"",
-                "type":"text"
-            },
-            "--nagents": {
-                "default": 3,
-                "type": "number"
-            },
-            "--load":{
-                "default":"",
-                "type":"text"
-            }
-        }
-    }]
+    ]
 }

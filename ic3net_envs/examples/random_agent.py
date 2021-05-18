@@ -1,7 +1,11 @@
-from ic3net_envs.traffic_junction_env import TrafficJunctionEnv
+
+from numpy.core.records import array
+from ic3net_envs.ic3net_envs.traffic_junction_env import TrafficJunctionEnv
 import argparse
 import sys
 import signal
+from time import sleep
+import json
 
 class RandomAgent(object):
     def __init__(self, action_space):
@@ -10,9 +14,14 @@ class RandomAgent(object):
     def act(self):
         return self.action_space.sample()
 
+
 if __name__ == '__main__':
+
+
+
+
     parser = argparse.ArgumentParser('Example GCCNet environment random agent')
-    parser.add_argument('--nagents', type=int, default=2, help="Number of agents")
+    parser.add_argument('--nagents', type=int, default=5, help="Number of agents")
     parser.add_argument('--display', action="store_true", default=False,
                         help="Use to display environment")
 
@@ -34,13 +43,13 @@ if __name__ == '__main__':
 
     agent = RandomAgent(env.action_space)
     episodes = 0
-
+    frame_id=0
     while episodes < 50:
         obs = env.reset()
         done = False
         while not done:
+    
             actions = []
-
             for _ in range(args.nagents):
                 action = agent.act()
                 actions.append(action)
@@ -48,6 +57,7 @@ if __name__ == '__main__':
 
             if args.display:
                 env.render()
+                
         episodes += 1
         print(reward)
 

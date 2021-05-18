@@ -1,6 +1,4 @@
 .content .params-setting {
-    float: left;
-    width: 200px;
     margin: 0 10px;
 }
 
@@ -17,7 +15,6 @@
     border-right: #f9826c solid 2px;
 }
 .display h1 {
-    width: 200px;
     margin: 0 10px;
 }
 
@@ -42,17 +39,16 @@ header>h1 {
 }
 
 .wrapper {
-    margin: 20px 95px;
+    margin: 20px auto;
     background-color: rgb(174 180 189 / 90%);
     padding: 20px 0;
     width: 90%;
 }
 
 body {
-    background-color: #4d4a40;
-    background-image: url(../source/images/AI.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #3b5998;
+    /* background-repeat: no-repeat;
+    background-size:1400px; */
 }
 
 form {
@@ -86,4 +82,28 @@ button.btn.btn-dark{
 }
 body > div > div > div.clearfix.mb-5 > div.params.clearfix.Box{
     max-width: 700px;
+}
+.nav-tabs li{
+    margin:0 5px;
+    position: relative;
+}
+.nav-tabs li a{
+    color: rgb(0, 0, 0);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+}
+.nav-tabs a.active{
+    background-color: #3b5998;
+}
+a.active::after{
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #3b5998;
+    content: "";
+    top:25px;
+    display: block;
+}
+button.btn.btn-dark{
+    margin-left: 5px;
 }

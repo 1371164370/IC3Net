@@ -9,6 +9,7 @@ import torch.nn.functional as F
 import time
 import sys
 from torch.autograd import Variable
+import ic3net_envs
 
 LogField = namedtuple('LogField', ('data', 'plot', 'x_axis', 'divide_by'))
 
@@ -127,9 +128,8 @@ def init_args_for_env(parser):
 
     if env_name == 'starcraft':
         import gym_starcraft
-
-    env = gym.make(env_dict[env_name])
-    env.init_args(parser)
+        env = gym.make(env_dict[env_name])
+        env.init_args(parser)
 
 def display_models(list_models):
     print('='*100)

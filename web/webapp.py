@@ -1,4 +1,5 @@
 import enum
+from logging import debug
 from sys import meta_path
 from flask import Flask, render_template, request,url_for,jsonify
 import json
@@ -14,7 +15,7 @@ from json_process import *
 app = Flask(__name__)
 app.jinja_env.variable_start_string = '{{ '
 app.jinja_env.variable_end_string = ' }}'
-# socket=SocketIO(app)
+socket=SocketIO(app)
 
 process_list=[]
 @app.route('/')
@@ -33,17 +34,17 @@ def receive():
         }
     """
     print(data)
+
     process_list.append(parse_and_run(data))
     print('test')
     return data
 
-
-@app.route('/render',methods=['POST'])
+# TODO: Tranffic junction ic3net和commNet算法实现，把环境里的传输的渲染数据由文件读写改为进程通信
+@socket.on("render")
 def render():
     with open('./web/static/source/data/render_cache.json') as f:
         data=json.load(f)
     return data
-    
 
 @app.route('/getparams',methods=['POST'])
 def sendHandledJson():
@@ -57,20 +58,23 @@ def sendHandledJson():
     return -1
 
 
-@app.route("/killall",methods=['POST'])
+# TODO : 前端进行 每个进程精准控制，前端构造模拟进程、进程队列
+@app.route("/killall",methods=['POST']) 
 def kill_all_process():
     print("start kill")
-    for i in range(len(process_list)):
-        p=process_list.pop()
-        print(p.pid)
-        # os.killpg(p.pid,signal.SIGTERM)
-        # p.send_signal(signal.SIGINT)
-        p.kill()
-    return {"pro_num":len(process_list)}
+    os.system("ps aux|grep main.py|grep -v grep|cut -c 9-15|xargs kill -9")
+    os.system("ps aux|grep Xvfb|grep -v grep|cut -c 9-15|xargs kill -9")
+    # for i in range(len(process_list)):
+    #     p=process_list.pop()
+    #     print(p.pid)
+    #     # os.killpg(p.pid,signal.SIGTERM)
+    #     # p.send_signal(signal.SIGINT)
+    #     p.kill()
+    return {"pro_num":1}
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socket.run(app,debug=True)
 
 
 

@@ -44,4 +44,5 @@ def parse_and_run(data):
     # xvfb-run -a python main.py --env_name traffic_junction --nagents 5 --nprocesses 1 --num_epochs 2000  --display
     # p = subprocess.Popen(f"{param_line_prefix} {param_line}",shell=True)
     p=subprocess.Popen(param_line_prefix)
+    print(f"subprocess id {p.pid} is created\n")
     return p

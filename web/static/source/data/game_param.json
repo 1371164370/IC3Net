@@ -98,10 +98,11 @@
                     "default": 0.05,
                     "type": "number"
                 },
-                "--difficulty": {
-                    "default": "easy",
-                    "type": "text"
-                },
+                "--difficulty": [
+                    "easy",
+                    "medium",
+                    "hard"
+                ],
                 "--curr_start": {
                     "default": 0,
                     "type": "number"

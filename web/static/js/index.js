@@ -75,14 +75,23 @@ function submitParams() {
             timer_list.push(t0);
             break;
         case "Traffic junction":
+            let socket=io();
+            socket.on("connect",()=>{
+                console.log('connected');
+            })
             let t1=setInterval(() => {
-                $.post("render", (data) => {
-                    console.log(data)
+                socket.emit("render",(data)=>{
+                    console.log(`receive:${data}`)
                     render_frame(data);
-
                 })
-            }, 1000);
+                // $.post("render", (data) => {
+                //     render_frame(data);
+
+                // })
+            }, 500);
             timer_list.push(t1);
+
+
             break;
         default:
             break;

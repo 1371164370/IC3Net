@@ -19,6 +19,7 @@ Design Decisions:
 import random
 import math
 import curses
+from flask.json import jsonify
 
 # 3rd party modules
 import gym
@@ -54,14 +55,15 @@ class TrafficJunctionEnv(gym.Env):
         # self.frame_seq=[]
 
     def init_curses(self):
-        self.stdscr = curses.initscr()
-        curses.start_color()
-        curses.use_default_colors()
-        curses.init_pair(1, curses.COLOR_RED, -1)
-        curses.init_pair(2, curses.COLOR_YELLOW, -1)
-        curses.init_pair(3, curses.COLOR_CYAN, -1)
-        curses.init_pair(4, curses.COLOR_GREEN, -1)
-        curses.init_pair(5, curses.COLOR_BLUE, -1)
+        # self.stdscr = curses.initscr()
+        # curses.start_color()
+        # curses.use_default_colors()
+        # curses.init_pair(1, curses.COLOR_RED, -1)
+        # curses.init_pair(2, curses.COLOR_YELLOW, -1)
+        # curses.init_pair(3, curses.COLOR_CYAN, -1)
+        # curses.init_pair(4, curses.COLOR_GREEN, -1)
+        # curses.init_pair(5, curses.COLOR_BLUE, -1)
+        pass
 
     def init_args(self, parser):
         env = parser.add_argument_group('Traffic Junction task')
@@ -274,54 +276,56 @@ class TrafficJunctionEnv(gym.Env):
         self.frame_id+=1
         with open("web/static/source/data/render_cache.json","w+") as f:
             json.dump(frame,f)
-        time.sleep(0.7)
+        # print(json.dumps(frame))
+        time.sleep(0.5)
 
     def render(self, mode='human', close=False):
 
         self.save_renderdata()
         
-        grid = self.grid.copy().astype(object)
-        # grid = np.zeros(self.dims[0]*self.dims[1], dtypeobject).reshape(self.dims)
-        grid[grid != self.OUTSIDE_CLASS] = '_'
-        grid[grid == self.OUTSIDE_CLASS] = ''
-        self.stdscr.clear()
-        for i, p in enumerate(self.car_loc):
-            if self.car_last_act[i] == 0: # GAS
-                if grid[p[0]][p[1]] != 0:
-                    grid[p[0]][p[1]] = str(grid[p[0]][p[1]]).replace('_','') + '<>'
-                else:
-                    grid[p[0]][p[1]] = '<>'
-            else: # BRAKE
-                if grid[p[0]][p[1]] != 0:
-                    grid[p[0]][p[1]] = str(grid[p[0]][p[1]]).replace('_','') + '<b>'
-                else:
-                    grid[p[0]][p[1]] = '<b>'
+        # grid = self.grid.copy().astype(object)
+        # # grid = np.zeros(self.dims[0]*self.dims[1], dtypeobject).reshape(self.dims)
+        # grid[grid != self.OUTSIDE_CLASS] = '_'
+        # grid[grid == self.OUTSIDE_CLASS] = ''
+        # self.stdscr.clear()
+        # for i, p in enumerate(self.car_loc):
+        #     if self.car_last_act[i] == 0: # GAS
+        #         if grid[p[0]][p[1]] != 0:
+        #             grid[p[0]][p[1]] = str(grid[p[0]][p[1]]).replace('_','') + '<>'
+        #         else:
+        #             grid[p[0]][p[1]] = '<>'
+        #     else: # BRAKE
+        #         if grid[p[0]][p[1]] != 0:
+        #             grid[p[0]][p[1]] = str(grid[p[0]][p[1]]).replace('_','') + '<b>'
+        #         else:
+        #             grid[p[0]][p[1]] = '<b>'
 
-        for row_num, row in enumerate(grid):
-            for idx, item in enumerate(row):
-                if row_num == idx == 0:
-                    continue
-                if item != '_':
-                    if '<>' in item and len(item) > 3: #CRASH, one car accelerates
-                        self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(2))
-                    elif '<>' in item: #GAS
-                        self.stdscr.addstr(row_num, idx * 4, item.center(3), curses.color_pair(1))
-                    elif '<b?' in item and len(item) > 3: #CRASH
-                        self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(2))
-                    elif '<b>' in item:
-                        self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(5))
-                    else:
-                        self.stdscr.addstr(row_num, idx * 4, item.center(3),  curses.color_pair(2))
-                else:
-                    self.stdscr.addstr(row_num, idx * 4, '_'.center(3), curses.color_pair(4))
+        # for row_num, row in enumerate(grid):
+        #     for idx, item in enumerate(row):
+        #         if row_num == idx == 0:
+        #             continue
+        #         if item != '_':
+        #             if '<>' in item and len(item) > 3: #CRASH, one car accelerates
+        #                 self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(2))
+        #             elif '<>' in item: #GAS
+        #                 self.stdscr.addstr(row_num, idx * 4, item.center(3), curses.color_pair(1))
+        #             elif '<b?' in item and len(item) > 3: #CRASH
+        #                 self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(2))
+        #             elif '<b>' in item:
+        #                 self.stdscr.addstr(row_num, idx * 4, item.replace('b','').center(3), curses.color_pair(5))
+        #             else:
+        #                 self.stdscr.addstr(row_num, idx * 4, item.center(3),  curses.color_pair(2))
+        #         else:
+        #             self.stdscr.addstr(row_num, idx * 4, '_'.center(3), curses.color_pair(4))
 
-        self.stdscr.addstr(len(grid), 0, '\n')
-        self.stdscr.refresh()
+        # self.stdscr.addstr(len(grid), 0, '\n')
+        # self.stdscr.refresh()
         '''
         '''
         
     def exit_render(self):
-        curses.endwin()
+        # curses.endwin()
+        pass
 
     def seed(self):
         return

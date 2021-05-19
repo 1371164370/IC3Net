@@ -12,7 +12,12 @@ div.grid.road {
     background-color: black;
     box-sizing: border-box;
 }
-
+div.map{
+    position: absolute;
+}
+div.things{
+    position: absolute;
+}
 /* div.grid.road.car{
     background-repeat: no-repeat;
     background-size: contain;
@@ -35,8 +40,8 @@ div.grid.road.crash{
 } */
 
 div#render-board{
+    background-color: whitesmoke;
     position: relative;
-    background-color: cadetblue;
 }
 div.car{
     position: absolute;

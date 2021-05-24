@@ -1,19 +1,21 @@
 
 const dead_loc = [0, 0];
+let map_list =[]
+let car_list = []//当前小车列表
 function render_frame(data) {
-    let car_loc = data["car_loc"];
-    if(map_list[0]==undefined || (data.grid_size.toString()!=map_list[0].grid_size.toString())){
+    let car_loc = data["car_loc"];//小车位置
+    if(map_list[0]==undefined || (data.grid_size.toString()!=map_list[0].grid_size.toString())){//地图若已存在或更改
         map_list[0]=new RoadMap(data.grid_size,data.routes);
         map_list[0].drawmap();
     }
     if (car_list.length <= car_loc.length) {
-        for (let i = 0; i < car_loc.length; i++) {
-            if (car_list[i] == undefined) {
+        for (let i = 0; i < car_loc.length; i++) {//检查每一个小车的位置
+            if (car_list[i] == undefined) {//i号小车还未生成则生成
                 console.log(car_list);
                 car_list[i] = new Car(car_loc[i]);
             }
             else {
-                car_list[i].action(car_loc[i]);
+                car_list[i].action(car_loc[i]);//根据当前帧的位置执行行为
             }
         }
 
@@ -22,8 +24,6 @@ function render_frame(data) {
 const grid_width = 50;
 const grid_height = 50;
 
-let map_list =[]
-let car_list = []
 class Car {
     constructor(car_loc) {
         this.loc = car_loc;

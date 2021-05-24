@@ -1,8 +1,4 @@
 import os
-from multiprocessing import Process,Queue, process
-from sys import stdout
-from types import prepare_class
-from ic3net_envs.examples import random_agent
 import subprocess
 
 

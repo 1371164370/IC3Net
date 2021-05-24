@@ -51,8 +51,6 @@ class TrafficJunctionEnv(gym.Env):
         self.episode_over = False
         self.has_failed = 0
 
-        self.frame_id= 0
-        # self.frame_seq=[]
 
     def init_curses(self):
         # self.stdscr = curses.initscr()
@@ -173,7 +171,8 @@ class TrafficJunctionEnv(gym.Env):
         -------
         observation (object): the initial observation of the space.
         """
-        # self.clear_renderdata()
+        self.clear_renderdata()
+        
         self.episode_over = False
         self.has_failed = 0
 
@@ -263,8 +262,8 @@ class TrafficJunctionEnv(gym.Env):
     def clear_renderdata(self):
         self.frame_id=0
         # self.frame_seq=[]
-        with open("web/static/source/data/render_cache.json","w") as f:
-            pass
+        # with open("web/static/source/data/render_cache.json","w") as f:
+        #     pass
 
     def save_renderdata(self):
         routes=[i[0].tolist() for i in self.routes]

@@ -1,5 +1,6 @@
 import enum
 from logging import debug
+import subprocess
 from sys import meta_path
 from flask import Flask, render_template, request,url_for,jsonify
 import json
@@ -41,6 +42,8 @@ def receive():
 
 @socket.on("render")
 def render():
+    # print(process_list[0].stdout.readline())
+    # process_list[0].stdout.flush()
     with open('./web/static/source/data/render_cache.json') as f:
         data=json.load(f)
     return data
@@ -72,6 +75,7 @@ def kill_all_process():
 
 
 if __name__ == '__main__':
+    subprocess.Popen(["visdom"])
     socket.run(app,debug=True)
 
 

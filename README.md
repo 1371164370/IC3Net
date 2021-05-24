@@ -33,7 +33,7 @@ visdom启动:
 ```
 visdom
 ```
-TODO : 前端进行 每个进程精准控制，前端构造模拟进程、进程队列、请求执行visdom
+TODO : 前端进行 每个进程精准控制，前端构造模拟进程、进程队列
 TODO: Tranffic junction ic3net和commNet算法实现，把环境里的传输的渲染数据由文件读写改为进程通信
 
 

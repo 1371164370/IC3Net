@@ -41,16 +41,6 @@ function stopAll() {
         console.log(info);
     });
 }
-function startVisdom(){
-    let test = $.post("/startVisdom", {
-        data: JSON.stringify({
-            "name": name,
-            "params": params
-        })
-    }, (info) => {
-        console.log(info);
-    });
-}
 function submitParams() {
     let name = $("li a.active").text();
     console.log(`name${name}`);
